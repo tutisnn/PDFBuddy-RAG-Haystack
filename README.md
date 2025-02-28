@@ -9,7 +9,7 @@ PDF Buddy-RAG-Haystack is a Retrieval-Augmented Generation (RAG) application tha
 To run this project locally, ensure you have Python installed and then install the required dependencies:
 
 ```sh
-pip install gradio farm-haystack transformers sentence-transformers
+pip install gradio haystack-ai pypdf
 ```
 
 ## Usage
