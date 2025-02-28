@@ -4,7 +4,7 @@ import getpass, os
 
 os.environ["HF_API_TOKEN"] = getpass.getpass("Your Hugging Face token")
 
-import random
+
 import gradio as gr
 
 from haystack.components.embedders import SentenceTransformersTextEmbedder
@@ -24,7 +24,7 @@ from haystack import Pipeline
 from haystack.document_stores.in_memory import InMemoryDocumentStore
 document_store = InMemoryDocumentStore()
 def process_pdf(pdf_path):
-
+    
    global document_store
 
    pdf_converter = PyPDFToDocument()
@@ -82,17 +82,17 @@ def get_generative_answer(query,history):
       "prompt_builder": {"query": query} })
     answer = results["generator"]["replies"][0]
 
-
+  
 
     return answer
 
 with gr.Blocks() as demo:
-    gr.Markdown("# 📄 PDF Destekli Chatbot")
+    gr.Markdown("# 📄 YOUR PDF BUDDY")
 
     chatbot = gr.ChatInterface(get_generative_answer, type="messages", autofocus=True)
     with gr.Row():
-        pdf_input = gr.File(label="📂 PDF Yükle", type="filepath")
-        process_button = gr.Button("🔄 PDF'yi İşle")
+        pdf_input = gr.File(label="📂 Upload Pdf", type="filepath")
+        process_button = gr.Button("🔄 Process Pdf")
     status_output = gr.Textbox(label="Durum", interactive=False)
 
     process_button.click(fn=process_pdf, inputs=pdf_input, outputs=status_output)
